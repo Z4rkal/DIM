@@ -9,6 +9,7 @@ import ConnectedInventoryItem from './ConnectedInventoryItem';
 
 interface Props {
   item: DimItem;
+  unpullable?: boolean;
 }
 
 /**
@@ -16,7 +17,7 @@ interface Props {
  */
 export default class StoreInventoryItem extends React.PureComponent<Props> {
   render() {
-    const { item } = this.props;
+    const { item, unpullable } = this.props;
 
     return (
       <DraggableInventoryItem item={item}>
@@ -24,6 +25,7 @@ export default class StoreInventoryItem extends React.PureComponent<Props> {
           {(ref, onClick) => (
             <ConnectedInventoryItem
               item={item}
+              unpullable={unpullable}
               allowFilter={true}
               innerRef={ref}
               onClick={onClick}

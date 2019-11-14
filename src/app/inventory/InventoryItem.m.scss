@@ -6,6 +6,11 @@
   transform: scale(0.85);
 }
 
+// Items that can't be pulled from the postmaster
+.unpullable {
+  opacity: 0.5;
+}
+
 // The wrapper for draggable items. Global because it's referenced by other styles.
 :global(.item-drag-container) {
   contain: layout paint style;

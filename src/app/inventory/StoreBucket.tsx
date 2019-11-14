@@ -14,6 +14,7 @@ import _ from 'lodash';
 import { sortedStoresSelector } from './reducer';
 import { DestinyClass } from 'bungie-api-ts/destiny2';
 import { globeIcon, hunterIcon, warlockIcon, titanIcon, AppIcon } from '../shell/icons';
+import { pullablePostmasterItems } from '../loadout/postmaster';
 import { showItemPicker } from '../item-picker/item-picker';
 import { moveItemTo } from './move-item';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -93,6 +94,7 @@ class StoreBucket extends React.Component<Props> {
 
     const equippedItem = items.find((i) => i.equipped);
     const unequippedItems = sortItems(items.filter((i) => !i.equipped), itemSortOrder);
+    const pullableItems = bucket.type === 'LostItems' ? pullablePostmasterItems(store) : false;
 
     return (
       <>
@@ -122,7 +124,15 @@ class StoreBucket extends React.Component<Props> {
           className={clsx({ 'not-equippable': !store.isVault && !equippedItem })}
         >
           {unequippedItems.map((item) => (
-            <StoreInventoryItem key={item.index} item={item} />
+            <StoreInventoryItem
+              key={item.index}
+              item={item}
+              unpullable={
+                pullableItems
+                  ? !pullableItems.find((pullableItem) => pullableItem.index === item.index)
+                  : false
+              }
+            />
           ))}
           {bucket.id === '375726501' &&
             _.times(bucket.capacity - unequippedItems.length, (index) => (

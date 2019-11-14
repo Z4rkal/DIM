@@ -13,6 +13,7 @@ import { wishListsEnabledSelector, inventoryWishListsSelector } from '../wishlis
 interface ProvidedProps {
   item: DimItem;
   allowFilter?: boolean;
+  unpullable?: boolean;
   ignoreSelectedPerks?: boolean;
   innerRef?: React.Ref<HTMLDivElement>;
   onClick?(e): void;
@@ -68,6 +69,7 @@ function ConnectedInventoryItem({
   searchHidden,
   inventoryWishListRoll,
   wishListsEnabled,
+  unpullable,
   ignoreSelectedPerks,
   innerRef
 }: Props) {
@@ -84,6 +86,7 @@ function ConnectedInventoryItem({
       searchHidden={searchHidden}
       wishListsEnabled={wishListsEnabled}
       inventoryWishListRoll={inventoryWishListRoll}
+      unpullable={unpullable}
       ignoreSelectedPerks={ignoreSelectedPerks}
       innerRef={innerRef}
     />

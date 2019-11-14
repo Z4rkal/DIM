@@ -35,6 +35,8 @@ interface Props {
   searchHidden?: boolean;
   wishListsEnabled?: boolean;
   inventoryWishListRoll?: InventoryWishListRoll;
+  /** Is this item an unpullable postmaster item? */
+  unpullable?: boolean;
   /** Don't show information that relates to currently selected perks (only used for subclasses currently) */
   ignoreSelectedPerks?: boolean;
   innerRef?: React.Ref<HTMLDivElement>;
@@ -53,6 +55,7 @@ export default function InventoryItem({
   searchHidden,
   wishListsEnabled,
   inventoryWishListRoll,
+  unpullable,
   ignoreSelectedPerks,
   onClick,
   onShiftClick,
@@ -82,6 +85,7 @@ export default function InventoryItem({
     null;
   const itemStyles = {
     [styles.searchHidden]: searchHidden,
+    [styles.unpullable]: unpullable,
     [styles.subclassPathTop]: subclassPath && subclassPath.position === 'top',
     [styles.subclassPathMiddle]: subclassPath && subclassPath.position === 'middle',
     [styles.subclassPathBottom]: subclassPath && subclassPath.position === 'bottom'
